@@ -1,10 +1,14 @@
 StackOverflow::Application.routes.draw do
-root 'static_pages#home'
+  root   'static_pages#home'
+  get    'help'   => 'static_pages#help'
+  get    'signup' => 'users#new'
+  get    'login'  => 'sessions#new'
+  post   'login'  => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
 
   #get 'users/new'
 
-  get 'help'  => 'static_pages#help'
-  get 'signup' => 'users#new'
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
