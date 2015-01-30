@@ -1,7 +1,7 @@
 StackOverflow::Application.routes.draw do
+root 'static_pages#home'
 
-
-  get 'users/new'
+  #get 'users/new'
 
   get 'help'  => 'static_pages#help'
   get 'signup' => 'users#new'
@@ -10,7 +10,7 @@ StackOverflow::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'static_pages#home'
+  
   resources :users
 
 
