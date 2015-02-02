@@ -16,7 +16,7 @@ StackOverflow::Application.routes.draw do
   # You can have the root of your site routed with "root"
   
   resources :users
-
+resources :questions,          only: [:create, :destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

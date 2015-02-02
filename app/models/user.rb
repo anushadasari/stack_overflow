@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :questions, dependent: :destroy
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   validates :name,  presence: true, length: { maximum: 50 }
@@ -31,6 +32,12 @@ class User < ActiveRecord::Base
   def authenticated?(remember_token)
     return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  end
+
+  # Defines a proto-feed.
+  # See "Following users" for the full implementation.
+  def feed
+    Question.where("user_id = ?", id)
   end
 
   # Forgets a user.
