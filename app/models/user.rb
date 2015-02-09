@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :questions, dependent: :destroy
+has_many :answers
+  
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   validates :name,  presence: true, length: { maximum: 50 }
@@ -39,7 +41,10 @@ class User < ActiveRecord::Base
   def feed
     Question.where("user_id = ?", id)
   end
-
+# upvotes a user.
+  #def upvote(other_user)
+   # active_relationships.create(upvoted_id: other_user.id)
+  #end
   # Forgets a user.
   def forget
     update_attribute(:remember_digest, nil)

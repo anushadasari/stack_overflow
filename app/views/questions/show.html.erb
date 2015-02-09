@@ -1,0 +1,29 @@
+
+<p>
+  <strong>Question:</strong>
+  <%= @question.content %>
+  </p>
+
+<% if @question.answers.any? %>
+      <h2>Answers (<%= @question.answers.count %>)</h2>
+<% @question.answers.each do |answer| %>
+  <p>
+    <strong>Answer:</strong>
+    <%= answer.body %>
+  </p>
+<% end %>
+<% end %>
+
+
+<h2>Add an answer:</h2>
+<%= form_for([@question, @question.answers.build]) do |f| %>
+<p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+ 
+<%= link_to 'Back to questions', root_path %>

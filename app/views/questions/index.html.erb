@@ -1,0 +1,18 @@
+<% provide(:title, ' All Questions') %>
+
+<div class="center jumbotron">
+  <h1>My StackOverflow</h1>
+
+  <h2>
+    Welcome to StackOverflow redefined
+  </h2>
+
+</div>
+
+<h1> Top Questions </h1>
+
+
+<ul class="questions">
+<%=  render @questions.take(10) %>
+</ul>
+

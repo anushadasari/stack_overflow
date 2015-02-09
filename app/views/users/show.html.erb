@@ -7,8 +7,9 @@
         <%= @user.name %>
       </h1>
     </section>
-  </aside>
+    </aside>
   <div class="col-md-8">
+
     <% if @user.questions.any? %>
       <h3>Questions (<%= @user.questions.count %>)</h3>
       <ol class="questions">
@@ -17,5 +18,15 @@
       <%= will_paginate @questions %>
     <% end %>
   </div>
+  <aside class="col-md-4">
+    
+       <section class="question_form">
+        <%= render 'shared/question_form' %>
+      </section>
+      
+    </aside>
+
 </div>
+
+
 

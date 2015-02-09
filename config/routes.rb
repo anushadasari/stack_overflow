@@ -1,11 +1,12 @@
 StackOverflow::Application.routes.draw do
-  root   'static_pages#home'
+root   'questions#index'
   get    'help'   => 'static_pages#help'
   get    'signup' => 'users#new'
   get    'login'  => 'sessions#new'
   post   'login'  => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-
+  #get    'answer' => 'questions#show'
+  post   'questions/upvote/:id'  => 'questions#upvote', as: 'upvote_thing'   
   #get 'users/new'
 
   
@@ -15,9 +16,26 @@ StackOverflow::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   
-  resources :users
-resources :questions,          only: [:create, :destroy]
+  resources :users 
+  
+  resources :questions,  only: [:create, :destroy]
 
+  resources :questions do
+    resources :answers
+  end
+
+  resources :questions do
+    resources :up_votes
+  end
+
+  #resources :answers do
+   # member do
+    #  put "like", to: "answers#upvote"
+     # put "dislike", to: "answers#downvote"
+    #end
+  #end
+
+#resources :questions, :has_many => :answers
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
