@@ -5,6 +5,8 @@ class CreateAnswers < ActiveRecord::Migration
       t.references :question, index: true
 
       t.timestamps null: false
+      t.integer :upvotes
+      t.integer :downvotes
     end
     add_foreign_key :answers, :questions
   end

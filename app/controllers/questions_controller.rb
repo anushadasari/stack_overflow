@@ -23,39 +23,58 @@ class QuestionsController < ApplicationController
     @question.destroy
     flash[:success] = "Question deleted"
     redirect_to request.referrer || root_url
-  end 
+  end
 
   def show
       #binding.pry
     # @user = User.find(params[:user_id])
     @question = Question.find(params[:id])
-    @question.up_votes.build
-    @up_vote = UpVote.new
-#question = Question.find(params[:id])
-    #@answers = @question.answers.all
-   #@answer = @question.answers.build
-   #if logged_in?
-    #    @answer = current_user.answers.build
-     # end
+end
+
+def vote
+    p "======================= #{params.inspect}"
+    @question = Question.where(:id => params["id"].to_i).first
+    if @question.votes.where(:user => current_user).count > 0
+      flash[:notice] = "You have already voted!"
+    else
+      Vote.create(voteable: @question, user: current_user, vote: params["vote"] == "true")
+    end
+
+    respond_to do |format|
+     format.html do
+         flash[:notice] = "You voted."
+         redirect_to :back
+       end
+       format.js
   end
+end
+  
+# Expects 
+# params[:question_id]
+# params[:action] => Integer -> 1 / 0
 
-def upvote
-  @question = Question.find(params[:id])
-  UpVote.create!(ip: request.remote_ip, voteable_id: params[:id], voteable_type: 'Question')
-  #@answer = @question.answer.find(params[:question_id])
-  #@question.upvote_by current_user
-  #render :inline => "OK"
+def uvote
+  question = Question.find(params[:question_id])
+  if params[:action].to_i == 1
+    question.upvote += 1
+  else
+    question.downvote += 1
+  end
+  question.save!
 
-  redirect_to @question
-
+  render :json => {:success => 1}
 end
 
+# Expects params[:question_id]
 def downvote
-  @question = Question.find(params[:id])
-  #@answer = @question.answer.find(params[:question_id])
-  @question.downvote_by current_user
-  redirect_to root_path
+  question = Question.find(params[:question_id])
+  question.downvote += 1
+  question.save!
+
+  render :json => {:success => 1}
 end
+
+
 
 private
 

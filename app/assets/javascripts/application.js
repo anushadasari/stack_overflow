@@ -12,16 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
 //= require bootstrap
 //= require turbolinks
 //= require_tree 
-<head>
-  <title>Application</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag    "jquery-ui.min" %>
-  <%= javascript_include_tag "external/jquery/jquery" %>
-  <%= javascript_include_tag "jquery-ui.min" %>
-</head>

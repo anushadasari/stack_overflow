@@ -1,0 +1,17 @@
+<div class="well row postDiv span5">
+    <div class="span0 well text-center">
+      <% if logged_in? %>
+        <%= link_to 'upvote' , vote_question_answer_path(question, answer, vote: true), method: 'post', 'data-remote' => true %>
+      <% end %>
+      <% if logged_in? %>
+        <%= link_to 'downvote' ,vote_question_answer_path(question, answer, vote: false), method: 'post', 'data-remote' => true %>
+        <% end %>
+      <span id="answer_vote_<%= answer.id %>"><%= answer.total_vote %></span><br>
+    </div>
+
+    <div class="span9" >
+      <p>
+    <strong>Answer:</strong>
+    <%= answer.body %>
+  </p>
+    </div>

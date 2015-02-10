@@ -5,6 +5,8 @@ class CreateQuestions < ActiveRecord::Migration
       t.references :user, index: true
 
       t.timestamps null: false
+      t.integer :upvotes
+      t.integer :downvotes
     end
     add_index :questions, [:user_id, :created_at]
   end

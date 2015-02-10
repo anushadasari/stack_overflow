@@ -7,17 +7,21 @@
   
   <span class="timestamp">
     Asked <%= time_ago_in_words(question.created_at) %> ago.
-  <div id= "question">
 
-  <div id="upvote">
-    <%= question.up_votes.count %>
+  <div class="span0 well text-center">
+    <% if logged_in? %>
+      <%= link_to 'upvote', vote_question_path(question, vote: true ), method: 'POST' , 'data-remote' => true  %>
+      <% end %>
+
+      <% if logged_in? %>
+      <%= link_to  'downvote', vote_question_path(question, vote: false), method: 'POST', 'data-remote' => true %>
+    <% end %>
+    
+    <span id="questions_vote_<%= question.id %>">
+      <%= question.total_vote %></span><br>
+    
   </div>
 
-  <div id= "vote">
-    <%= link_to "upvotequestion", upvote_question_path(@question.id), :remote => true, :id => "new_upvote_link", method: :post, :class => "btn btn-small" %>
-  </div> 
-
-</div>
 Answers
   <%= question.answers.count %>
 

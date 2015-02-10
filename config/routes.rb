@@ -5,35 +5,35 @@ root   'questions#index'
   get    'login'  => 'sessions#new'
   post   'login'  => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-  #get    'answer' => 'questions#show'
-  post   'questions/upvote/:id'  => 'questions#upvote', as: 'upvote_thing'   
-  #get 'users/new'
+
+
+
+ #post   '/votes'
 
   
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
+  
   
   resources :users 
   
-  resources :questions,  only: [:create, :destroy]
-
-  resources :questions do
-    resources :answers
+  resources :questions,  only: [:create, :destroy] do
+    member do
+      post 'vote'
+    end
   end
 
   resources :questions do
-    resources :up_votes
+    resources :answers do
+    member do
+    post 'vote'
+    end
+  end
   end
 
-  #resources :answers do
-   # member do
-    #  put "like", to: "answers#upvote"
-     # put "dislike", to: "answers#downvote"
-    #end
-  #end
+
+
+
+ 
 
 #resources :questions, :has_many => :answers
   # Example of regular route:
