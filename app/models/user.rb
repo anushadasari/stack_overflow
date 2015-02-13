@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :questions, dependent: :destroy
-has_many :answers
-  
+  has_many :answers
+ 
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   validates :name,  presence: true, length: { maximum: 50 }
@@ -10,7 +10,9 @@ has_many :answers
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, length: { minimum: 6 }, allow_blank: true
+  validates :password,presence: true, length: { minimum: 6 }
+  validates :password_confirmation, presence: true 
+  #allow_blank: true
 
   # Returns the hash digest of the given string.
   def User.digest(string)

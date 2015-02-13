@@ -21,6 +21,7 @@ group :development, :test do
   gem 'byebug',      '3.4.0'
   gem 'web-console', '2.0.0.beta3'
   gem 'spring',      '1.1.3'
+  #gem 'rspec-rails',  '~> 3.0'
   gem 'factory_girl_rails'
 end
 
@@ -28,10 +29,11 @@ group :test do
   gem 'minitest-reporters', '1.0.5'
   gem 'mini_backtrace',     '0.1.3'
   gem 'guard-minitest',     '2.3.1'
-  gem 'faker' ,               '1.4.2'
+  gem 'faker'
   gem 'capybara'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'rspec-its', '~>1.0.0.pre'
 end
 
 group :production do
@@ -39,7 +41,9 @@ group :production do
   gem 'rails_12factor', '0.0.2'
   gem 'unicorn',        '4.8.3'
 end
-
+%w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+  gem lib, :git => "git://github.com/rspec/#{lib}.git", :branch => 'master'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -52,4 +56,4 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-gem "rspec-rails", :group => [:development, :test]
+

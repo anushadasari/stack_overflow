@@ -1,3 +1,50 @@
+GIT
+  remote: git://github.com/rspec/rspec-core.git
+  revision: c0960539ee720fb9366b4852f9dc95248cc78ee9
+  branch: master
+  specs:
+    rspec-core (3.3.0.pre)
+      rspec-support (= 3.3.0.pre)
+
+GIT
+  remote: git://github.com/rspec/rspec-expectations.git
+  revision: b647492e4c1c34fcd165f33bc997bee3c21bcd2c
+  branch: master
+  specs:
+    rspec-expectations (3.3.0.pre)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (= 3.3.0.pre)
+
+GIT
+  remote: git://github.com/rspec/rspec-mocks.git
+  revision: 250a5def70ac1276a1a83a5ce8f176d12a8554c0
+  branch: master
+  specs:
+    rspec-mocks (3.3.0.pre)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (= 3.3.0.pre)
+
+GIT
+  remote: git://github.com/rspec/rspec-rails.git
+  revision: 99b1a6cbbf1cff88e7511a3fbe01acebbc921722
+  branch: master
+  specs:
+    rspec-rails (3.3.0.pre)
+      actionpack (>= 3.0, <= 4.2)
+      activesupport (>= 3.0, <= 4.2)
+      railties (>= 3.0, <= 4.2)
+      rspec-core (= 3.3.0.pre)
+      rspec-expectations (= 3.3.0.pre)
+      rspec-mocks (= 3.3.0.pre)
+      rspec-support (= 3.3.0.pre)
+
+GIT
+  remote: git://github.com/rspec/rspec-support.git
+  revision: 0b23e898ac16327bace55b20777cc38f5874cf7f
+  branch: master
+  specs:
+    rspec-support (3.3.0.pre)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -37,7 +84,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     acts_as_votable (0.10.0)
-    addressable (2.3.6)
+    addressable (2.3.7)
     ansi (1.5.0)
     arel (6.0.0)
     bcrypt (3.1.7)
@@ -52,7 +99,7 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
-    capybara (2.2.1)
+    capybara (2.4.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
@@ -74,12 +121,12 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.2)
-    factory_girl (4.4.0)
+    factory_girl (4.5.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.4.1)
-      factory_girl (~> 4.4.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
-    faker (1.4.2)
+    faker (1.4.3)
       i18n (~> 0.5)
     ffi (1.9.6)
     formatador (0.2.5)
@@ -97,9 +144,8 @@ GEM
     guard-minitest (2.3.1)
       guard (~> 2.0)
       minitest (>= 3.0)
-    guard-rspec (3.1.0)
-      guard (>= 1.8)
-      rspec (~> 2.13)
+    guard-rspec (1.2.1)
+      guard (>= 1.1)
     hike (1.2.3)
     hitimes (1.2.2)
     i18n (0.7.0)
@@ -112,7 +158,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.2)
     kgio (2.9.3)
-    launchy (2.4.2)
+    launchy (2.4.3)
       addressable (~> 2.3)
     listen (2.8.5)
       celluloid (>= 0.15.2)
@@ -186,22 +232,9 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.2.0)
       json (~> 1.4)
-    rspec (2.14.1)
-      rspec-core (~> 2.14.0)
-      rspec-expectations (~> 2.14.0)
-      rspec-mocks (~> 2.14.0)
-    rspec-core (2.14.7)
-    rspec-expectations (2.14.5)
-      diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.14.5)
-    rspec-rails (2.14.1)
-      actionpack (>= 3.0)
-      activemodel (>= 3.0)
-      activesupport (>= 3.0)
-      railties (>= 3.0)
-      rspec-core (~> 2.14.0)
-      rspec-expectations (~> 2.14.0)
-      rspec-mocks (~> 2.14.0)
+    rspec-its (1.0.1)
+      rspec-core (>= 2.99.0.beta1)
+      rspec-expectations (>= 2.99.0.beta1)
     ruby-progressbar (1.7.1)
     sass (3.4.10)
     sass-rails (5.0.1)
@@ -263,7 +296,7 @@ DEPENDENCIES
   capybara
   coffee-rails (= 4.1.0)
   factory_girl_rails
-  faker (= 1.4.2)
+  faker
   guard-minitest (= 2.3.1)
   guard-rspec
   jbuilder (= 2.2.3)
@@ -275,7 +308,12 @@ DEPENDENCIES
   pry
   rails (= 4.2.0)
   rails_12factor (= 0.0.2)
-  rspec-rails
+  rspec-core!
+  rspec-expectations!
+  rspec-its (~> 1.0.0.pre)
+  rspec-mocks!
+  rspec-rails!
+  rspec-support!
   sass-rails (= 5.0.1)
   sdoc (= 0.4.0)
   spring (= 1.1.3)
